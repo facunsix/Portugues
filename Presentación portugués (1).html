@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polos Tecnológicos de Brasil: Belo Horizonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g1:#14532D;--g2:#1B6B4A;--mint:#D1FAE5;--amber:#F59E0B;--ink:#0F172A;--mute:#475569;--bg:#F6FAF7;--line:#D8E3DC}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+body.mural{overflow:auto}
+.bar{position:fixed;inset:0 0 auto 0;height:56px;z-index:20;display:flex;align-items:center;gap:14px;padding:0 18px;background:#fff;border-bottom:1px solid var(--line)}
+.brand{font-weight:800;color:var(--g1);font-size:15px;white-space:nowrap}
+.prog{flex:1;height:6px;background:#E5EDE8;border-radius:9px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--g2);transition:width .4s}
+.cnt{font-weight:700;font-size:14px;color:var(--mute);min-width:50px;text-align:right}
+.bar button{font-weight:700;font-size:14px;font-family:inherit;border:1.5px solid var(--g2);background:#fff;color:var(--g1);border-radius:9px;padding:8px 13px;cursor:pointer}
+.bar button:hover,.bar button.on{background:var(--g2);color:#fff}
+button:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+#stage{position:absolute;left:0;top:56px;width:1280px;height:720px;transform-origin:0 0}
+body.mural #stage{display:none}
+#mural{display:none;padding:76px 20px 40px;max-width:1240px;margin:auto}
+body.mural #mural{display:block}
+.mw{margin-bottom:22px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);position:relative}
+.mw .slide{transform-origin:0 0}
+.slide{position:absolute;inset:0;width:1280px;height:720px;padding:52px 68px;opacity:0;visibility:hidden;transform:translateX(30px);transition:opacity .45s,transform .45s,visibility .45s;display:flex;flex-direction:column;background:var(--bg)}
+.slide.on{opacity:1;visibility:visible;transform:none}
+.mw .slide{position:relative;opacity:1;visibility:visible;transform:none}
+h1{font-size:70px;line-height:1.05;font-weight:800;color:var(--g1);letter-spacing:-.02em}
+h2{font-size:44px;line-height:1.1;font-weight:800;color:var(--g1);letter-spacing:-.015em;margin-bottom:6px}
+.sub{font-size:23px;color:var(--mute);margin-bottom:26px}
+.row{display:flex;gap:28px;flex:1;min-height:0}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px 26px}
+.badge{display:inline-block;background:var(--mint);color:var(--g1);font-weight:800;font-size:17px;border-radius:99px;padding:6px 15px}
+.badge.a{background:#FEF3C7;color:#92400E}
+.ico{width:46px;height:46px;border-radius:13px;background:var(--mint);display:grid;place-items:center;margin-bottom:12px}
+.ico svg{width:28px;height:28px;stroke:var(--g1);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.k{font-size:50px;font-weight:800;color:var(--g2);line-height:1}
+.kl{font-size:19px;color:var(--mute);margin-top:7px;line-height:1.3}
+.card h3{font-size:25px;font-weight:800;line-height:1.2;margin-bottom:8px}
+.card p,.card li{font-size:20px;line-height:1.4;color:#1E293B}
+.card ul{padding-left:20px}
+.card b{color:var(--g1)}
+.foot{font-size:16px;color:var(--mute);margin-top:auto;padding-top:14px}
+.map{height:100%;max-height:560px;width:auto}
+.map .mt{font:800 15px "Plus Jakarta Sans",system-ui,sans-serif;fill:#0F172A}
+.map .ms{font:700 14px "Plus Jakarta Sans",system-ui,sans-serif;fill:#14532D}
+.pulse{transform-box:fill-box;transform-origin:center;animation:p 1.8s ease-out infinite}
+@keyframes p{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
+.photo{position:relative;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);background:#EEF6F1;min-height:0}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.photo .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;color:var(--g1)}
+.ph b{font-size:21px}.ph span{font-size:15px;color:var(--mute)}
+.cover{background:linear-gradient(120deg,#fff 0 60%,var(--mint) 60%)}
+.cover .tag{font-size:17px;font-weight:700;color:var(--g2);line-height:1.5}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;min-height:0}
+.grid2{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px;flex:1;min-height:0}
+.dark{background:var(--g1);border-color:var(--g1)}
+.dark h3,.dark p,.dark li,.dark b{color:#fff}
+.big .card p,.big .card li{font-size:25px;line-height:1.45}.big .card h3{font-size:29px}.big .k{font-size:64px}
+.end{align-items:center;justify-content:center;text-align:center}
+.words{display:flex;gap:18px;margin:34px 0 10px}
+.words span{font-size:40px;font-weight:800;color:#fff;background:var(--g2);border-radius:16px;padding:14px 30px}
+.words span:nth-child(2){background:var(--amber);color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.slide,.prog i{transition:none}.pulse{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-grad" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c3 2.5 9 2.5 12 0v-4.5"/></symbol>
+<symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.5 9c-.6-1-1.6-1.4-2.7-1.4-1.6 0-2.6.8-2.6 2 0 3 5.6 1.4 5.6 4.3 0 1.2-1.1 2.1-2.9 2.1-1.2 0-2.3-.5-2.9-1.5M12 6v1.6M12 16.5V18"/></symbol>
+<symbol id="i-build" viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6M9 10h.01M15 10h.01"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 001.3 2h12.4a1.5 1.5 0 001.3-2L14 9V3"/><path d="M7.5 15h9"/></symbol>
+<symbol id="i-city" viewBox="0 0 24 24"><rect x="4" y="9" width="7" height="12"/><rect x="11" y="3" width="9" height="18"/><path d="M7 13h1M7 17h1M14 7h3M14 11h3M14 15h3"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></symbol>
+</defs></svg>
+
+<header class="bar">
+  <div class="brand">UCP · Belo Horizonte</div>
+  <div class="prog" aria-hidden="true"><i id="pb"></i></div>
+  <div class="cnt" id="cnt">1 / 7</div>
+  <button id="prev" aria-label="Diapositiva anterior">‹</button>
+  <button id="next" aria-label="Diapositiva siguiente">›</button>
+  <button id="mv">Vista Mural / Infografía</button>
+  <button id="fs">Pantalla completa</button>
+</header>
+
+<main id="stage">
+
+<!-- 1 PORTADA -->
+<section class="slide cover on">
+  <div class="row" style="gap:48px">
+    <div style="flex:1.45;display:flex;flex-direction:column;justify-content:center">
+      <p class="tag">Universidad de la Cuenca del Plata<br>Facultad de Ingeniería, Tecnología y Arquitectura<br>Sede Posadas</p>
+      <h1 style="margin:30px 0 16px">Polos Tecnológicos de Brasil: Belo Horizonte</h1>
+      <p class="sub" style="margin-bottom:34px">El ecosistema de innovación de Minas Gerais</p>
+      <p class="foot" style="margin-top:0;font-size:17px;line-height:1.6">Ingeniería en Sistemas de Información • Portugués (Comisión A)<br>Estudiantes: Gocks Sebastian - Esteche José • Posadas, 2026</p>
+    </div>
+    <figure class="photo" style="flex:1;align-self:center;height:520px"><img src="https://content.r9cdn.net/rimg/dimg/ec/dc/35e2faf0-city-10930-17b1a6be790.jpg?width=1366&height=768&crop=true" alt="Belo Horizonte" referrerpolicy="no-referrer" onerror="this.remove()"><figcaption class="ph"><b>Belo Horizonte</b><span>Minas Gerais, Brasil</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- 2 UBICACION -->
+<section class="slide">
+  <h2>Ubicación y radiografía de la ciudad</h2>
+  <p class="sub">Belo Horizonte, capital de Minas Gerais · Región Sudeste</p>
+  <div class="row">
+    <div class="card" style="flex:.8;display:grid;place-items:center;padding:14px"><svg class="map" viewBox="0 0 460 400" role="img" aria-label="Mapa de Brasil con Minas Gerais y Belo Horizonte"><path d="M4 132L20 138L36 141L52 150L74 159L63 167L60 166L56 171L48 169L40 169L36 171L35 169L34 170L35 154L28 160L18 160L17 155L8 154L11 150L4 143L4 140L2 139L3 137L0 136L0 133L3 133L2 131ZM385 148L388 149L388 151L376 165L369 159L359 154L358 152L362 149L371 154L378 152L377 151L379 149ZM67 40L69 42L69 48L78 53L85 50L85 54L89 48L93 48L95 45L97 46L100 40L109 38L109 40L113 40L112 45L116 50L115 58L118 64L115 68L119 70L121 74L124 74L125 76L124 68L128 65L130 65L132 69L135 69L140 57L151 57L151 63L156 71L160 71L160 74L168 77L170 80L173 80L172 82L179 80L175 84L176 85L165 109L157 126L155 127L159 133L158 137L156 138L156 148L122 147L120 149L115 143L114 144L115 143L113 141L104 140L103 143L100 144L101 146L98 148L99 150L91 150L90 154L86 153L86 155L83 154L83 156L81 154L76 154L76 156L72 158L52 150L36 141L13 136L2 131L4 127L9 125L7 121L10 118L11 111L14 111L21 105L31 104L33 101L37 101L38 104L41 102L46 70L44 65L39 62L40 54L49 54L48 49L42 49L42 43L58 43L58 40L61 42L65 38L67 38ZM228 20L231 35L233 36L233 39L236 38L237 41L241 43L241 50L239 53L235 54L233 59L226 63L222 72L216 71L215 66L210 61L208 56L209 53L206 51L206 48L194 42L192 42L191 36L193 35L193 37L196 38L207 36L207 38L211 38L214 36L217 30L216 29L222 20L224 20L224 16L226 16ZM347 146L353 148L353 150L354 148L357 150L357 153L360 155L360 160L362 160L363 163L361 164L362 167L358 167L358 170L363 176L367 174L358 189L354 189L350 193L351 200L349 208L351 222L348 229L349 237L343 243L338 240L338 237L334 234L334 230L338 228L337 226L341 223L341 220L332 216L328 218L322 211L319 212L311 207L308 207L301 207L302 203L297 202L279 213L281 203L277 201L278 194L280 193L277 193L277 190L279 189L277 189L278 184L276 183L276 180L278 179L276 179L276 177L279 176L275 175L274 172L278 166L283 163L283 161L285 162L286 167L290 169L294 166L299 166L303 161L301 156L304 153L313 156L316 155L316 153L321 153L326 147L329 147L333 151L332 155L334 155L337 154L337 151L340 151L341 148L346 145ZM340 88L355 97L363 106L367 107L362 111L359 119L354 123L354 128L352 130L355 133L353 136L349 139L349 137L347 137L344 133L335 134L336 128L333 127L331 122L331 112L328 110L329 100L327 100L328 97L326 96L327 89ZM333 268L330 273L324 272L323 268L321 268L321 263L326 262L328 257L331 255L331 251L328 249L331 248L328 244L330 241L332 242L331 240L337 239L343 243L343 255L339 258L337 265ZM238 184L237 189L240 189L246 193L248 188L250 190L252 188L254 193L255 191L255 193L258 191L258 193L262 193L263 195L263 191L267 193L271 190L275 190L276 188L276 190L279 189L277 190L277 193L280 193L278 194L277 201L281 203L280 209L275 207L275 211L271 210L272 219L266 220L266 215L258 215L257 218L257 221L267 221L265 225L268 227L269 230L267 231L265 233L265 235L267 235L267 241L262 245L258 243L250 243L247 246L239 246L235 249L235 251L233 251L231 254L232 255L225 251L221 251L216 247L210 246L212 243L209 243L209 238L207 236L208 232L211 229L210 228L212 228L213 225L214 226L213 223L215 223L214 222L217 221L217 219L222 218L223 212L225 210L229 210L230 202L232 201L231 197L234 194L236 185ZM270 150L271 145L275 143L275 139L270 141L264 134L265 133L263 133L266 125L265 115L261 112L252 113L264 106L267 102L266 101L269 99L270 94L271 95L270 94L274 90L273 87L276 85L275 84L278 80L278 72L280 72L280 70L281 72L282 70L281 73L283 71L283 74L286 73L286 75L287 73L286 77L289 74L290 75L292 74L291 76L294 76L292 78L295 78L296 85L300 84L300 86L304 82L305 84L307 83L314 87L322 87L322 90L319 94L315 94L310 102L312 105L310 107L312 114L309 116L309 121L312 123L311 127L300 127L296 132L285 137L283 145L280 148L282 154L281 163L275 161L275 158L273 157L275 155L272 154L272 152L269 151ZM201 239L209 240L209 243L212 243L210 246L230 253L230 262L224 266L224 269L221 271L221 275L219 275L220 277L217 281L204 289L203 293L200 294L198 301L194 298L191 300L186 300L183 289L184 286L182 283L178 283L176 281L171 283L160 281L162 269L160 268L161 267L158 262L161 260L159 258L165 242L162 236L163 235L166 239L169 238L172 233L180 232L189 237L192 235L196 235L197 237L203 232L203 237L201 237ZM136 193L139 190L139 186L142 185L139 179L139 175L141 173L140 171L136 170L124 170L124 148L156 148L156 138L158 137L159 133L162 141L164 142L164 148L165 147L168 149L170 151L169 152L172 152L172 154L238 158L233 171L233 187L235 190L231 197L232 201L230 202L230 208L229 210L225 210L223 212L222 218L217 219L217 221L213 223L214 226L213 225L213 227L210 228L211 229L209 230L208 234L207 236L209 240L200 239L203 237L203 232L197 237L196 235L189 237L184 235L184 233L177 232L172 233L169 238L165 239L163 235L157 234L155 230L157 223L138 223L138 215L134 211L138 211L135 203L136 199L133 197ZM270 67L270 69L272 67L271 69L276 69L275 71L278 69L277 72L279 70L279 76L277 77L278 80L275 84L276 85L273 87L273 92L270 94L271 95L270 94L271 95L264 106L252 113L259 116L257 117L258 120L252 128L248 129L248 133L246 135L249 138L248 142L245 148L239 153L238 158L172 154L172 152L169 152L170 151L168 149L165 147L164 148L164 142L162 141L161 136L155 127L157 126L165 109L176 85L175 84L179 80L172 82L173 80L163 76L160 74L160 71L156 71L153 67L153 64L151 63L151 48L155 46L156 44L160 45L160 43L165 43L166 40L176 40L180 42L180 35L187 36L186 35L190 34L192 36L192 42L196 42L206 48L206 51L209 53L208 56L210 61L215 66L216 71L222 72L226 63L233 59L237 53L240 54L239 57L243 56L250 62L256 62L255 65L260 67L263 65L265 68L265 66L268 66L268 68ZM368 120L365 125L367 128L372 127L373 130L376 126L375 124L377 123L380 125L390 125L392 130L392 135L385 134L385 137L376 138L371 143L368 141L369 140L366 140L369 138L369 133L366 133L362 136L363 137L361 136L361 138L354 138L353 135L355 133L352 130L355 123L356 125L360 125L362 122ZM368 133L370 135L366 140L369 140L369 143L373 142L376 138L385 137L385 134L390 134L392 135L391 144L389 149L382 148L379 149L377 151L378 152L371 154L363 149L357 153L355 148L353 150L353 148L346 145L341 148L340 151L337 151L337 154L332 155L333 151L331 148L326 147L334 142L335 138L333 138L333 134L344 133L347 137L349 137L349 139L353 136L354 138L361 138L361 136L363 137L363 135ZM323 88L328 90L326 96L328 97L327 100L329 100L328 110L331 112L331 122L333 127L336 128L335 134L333 134L333 138L335 138L335 140L321 153L316 153L316 155L313 156L306 153L302 154L302 163L299 166L294 166L292 169L288 168L286 167L284 161L282 163L280 162L282 160L280 148L282 147L286 136L293 134L300 127L311 127L312 123L309 121L309 116L312 114L310 107L312 105L310 102L315 94L319 94L322 90L321 88ZM219 285L232 288L233 290L240 289L244 292L244 299L248 303L247 307L255 307L254 311L258 310L258 312L260 312L254 320L247 320L246 322L241 320L238 321L234 320L232 323L229 322L227 323L228 326L225 327L213 323L204 323L201 316L194 316L197 301L199 300L200 294L203 293L204 289L209 286L218 287ZM295 293L293 294L291 292L293 289L298 288L298 286L293 286L292 284L300 281L310 281L316 278L319 269L323 268L324 272L330 272L330 274L330 280L322 283L320 285L320 290L309 290L310 287L308 287L308 290L305 291L303 291L303 289L299 289L298 291L296 289L293 291L293 293ZM368 109L373 111L385 111L388 115L390 122L389 126L383 124L380 125L377 123L375 126L373 130L372 127L365 127L368 120L362 122L360 125L354 124L355 121L359 119L362 111L364 109ZM75 159L72 158L75 157L76 154L81 154L83 156L83 154L86 155L86 153L90 154L91 150L99 150L98 148L104 140L113 140L115 143L114 144L115 143L120 149L124 147L124 170L140 171L141 174L139 175L139 179L142 183L142 185L139 186L139 190L137 191L136 195L133 197L131 195L125 195L121 195L119 191L117 192L111 188L110 189L109 186L106 187L103 184L96 185L95 182L92 182L92 180L87 177L87 157ZM141 29L140 34L141 37L143 37L143 43L145 43L148 47L151 47L151 57L140 57L135 69L132 69L130 65L126 66L124 68L125 76L115 68L117 67L118 62L115 58L116 50L112 45L113 40L109 40L106 36L99 35L100 32L98 30L98 24L92 19L93 17L94 19L99 19L100 21L103 20L105 22L108 20L111 24L113 23L112 20L115 20L115 18L124 18L134 11L133 8L138 7L140 9L140 13L138 15L142 15L143 19L145 20L141 24ZM220 376L219 375L217 378L219 379L219 382L217 383L215 390L206 398L205 392L208 391L208 388L210 387L212 389L214 387L214 381L212 382L213 384L208 387L204 385L202 380L195 377L195 375L188 373L184 368L180 371L180 368L174 362L169 361L168 363L164 363L167 358L169 358L174 353L173 352L176 351L181 344L183 344L182 342L185 342L188 339L190 339L189 338L191 338L192 335L197 335L201 331L210 331L212 333L216 332L220 333L220 335L226 336L234 344L237 344L236 345L243 345L240 348L240 352L238 352L240 354L239 352L242 352L241 353L243 354L241 355L235 368L228 376L219 382L219 378L222 379L221 378L224 378L226 376L225 375L228 375L228 371L233 368L233 363L234 365L235 364L235 362L229 364L230 363L228 363L227 360L229 365L227 365L227 368L226 366L226 371L224 371L224 373L220 373ZM203 326L203 323L207 322L208 324L213 323L227 327L227 323L232 323L234 320L241 320L243 322L246 322L247 320L254 320L254 340L253 345L243 353L239 352L240 354L238 352L241 351L240 348L243 345L234 344L229 338L224 335L220 335L220 333L212 333L210 331L202 332ZM360 155L376 164L375 166L371 167L366 175L361 175L362 174L360 174L358 170L358 167L362 167L361 164L363 163L362 160L360 160ZM279 299L271 302L259 313L260 312L259 313L258 310L254 311L255 307L247 307L248 303L244 299L244 292L240 289L233 290L232 288L223 287L220 285L218 287L209 287L209 285L217 281L220 277L219 275L222 273L221 271L224 269L224 266L229 263L230 260L234 258L245 259L248 260L247 263L250 262L250 264L253 261L260 261L266 260L268 262L267 265L269 265L269 273L275 274L273 284L276 285L276 289L282 289L283 286L286 287L291 284L293 284L293 286L298 286L298 288L292 290L291 292L293 294L291 293L289 294L290 295L286 296L286 298ZM287 299L285 299L287 297L288 298L288 300ZM270 150L269 151L275 155L273 157L275 158L276 162L283 162L274 172L275 175L279 176L276 177L276 179L278 179L276 180L276 183L278 184L277 189L279 189L276 190L276 188L275 190L271 190L267 193L263 191L263 195L262 193L258 193L258 191L256 193L255 191L254 193L252 188L250 190L248 188L246 193L240 189L237 189L238 184L236 185L235 189L233 187L234 166L239 157L239 153L245 148L248 142L249 138L246 136L248 129L252 128L253 125L256 124L256 121L258 120L257 117L259 116L252 113L261 112L265 115L266 125L263 133L265 133L264 134L270 141L275 139L275 143L271 145ZM267 220L257 221L258 215L267 216Z" fill="#E2E8F0" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/><path d="M298 202L302 203L301 207L305 208L308 206L316 211L322 211L328 218L332 216L341 220L341 223L337 226L338 228L334 230L334 234L338 237L338 240L334 239L331 240L332 242L330 241L328 243L331 247L328 248L330 250L329 251L331 251L331 255L328 257L326 262L321 263L322 267L318 270L319 271L316 278L310 281L300 281L286 287L283 286L282 289L276 289L277 288L275 287L276 285L273 284L275 274L269 273L269 265L267 265L268 262L266 260L253 261L250 264L250 262L247 263L248 260L245 259L234 258L230 261L230 255L232 255L231 254L233 251L235 251L235 249L239 246L247 246L250 243L258 243L262 245L266 242L267 235L265 235L265 233L269 230L265 225L268 219L272 219L271 210L275 211L274 208L276 207L277 209L280 209L279 213L280 211L281 212Z" fill="#1B6B4A" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/><circle class="pulse" cx="300.6" cy="259.2" r="8" fill="#F59E0B"/><circle cx="300.6" cy="259.2" r="6" fill="#F59E0B" stroke="#fff" stroke-width="2.5"/><text x="312" y="252" class="mt">Belo Horizonte</text><text x="214" y="330" class="ms">Minas Gerais</text><path d="M262 322 L282 285" stroke="#0F172A" stroke-width="1" fill="none"/></svg></div>
+    <div style="flex:1.2;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="card"><div class="k">2,31 M</div><div class="kl">habitantes · 6.ª ciudad más poblada de Brasil (Censo 2022, IBGE)</div></div>
+      <div class="card"><div class="k">R$ 56.227</div><div class="kl">PIB per cápita (2023)</div></div>
+      <div class="card"><div class="k">20,5 M</div><div class="kl">habitantes en Minas Gerais · 2.º estado más poblado</div></div>
+      <div class="card"><div class="k">9</div><div class="kl">parques tecnológicos en el estado, con empresas como Totvs, ArcelorMittal y Vallourec</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 TALENTO -->
+<section class="slide big">
+  <h2>Talento, costo de vida e infraestructura</h2>
+  <p class="sub">Tres razones por las que el polo funciona</p>
+  <div class="cols">
+    <div class="card"><div class="ico"><svg><use href="#i-grad"/></svg></div><h3>Formación y universidades</h3><div class="k" style="margin:8px 0">62</div><p>instituciones de educación superior, lideradas por la <b>UFMG</b>, referente nacional en investigación y tecnología.</p></div>
+    <div class="card"><div class="ico"><svg><use href="#i-coin"/></svg></div><h3>Costo de vida competitivo</h3><div class="k" style="margin:8px 0;font-size:48px">R$ 6.000–6.300</div><p>por mes para una persona sola (2026). Más accesible que São Paulo y Río de Janeiro, sobre todo en alquileres.</p></div>
+    <div class="card"><div class="ico"><svg><use href="#i-build"/></svg></div><h3>Infraestructura</h3><ul><li>Metro y transporte urbano</li><li>Aeropuerto Internacional Tancredo Neves (Confins), unido por la Linha Verde</li><li>Matriz eléctrica renovable y nuevos data centers</li><li>Hubs de innovación</li></ul></div>
+  </div>
+</section>
+
+<!-- 4 ECOSISTEMA -->
+<section class="slide big">
+  <h2>El ecosistema de innovación: 3 pilares</h2>
+  <p class="sub">Comunidad, universidad y grandes empresas trabajando juntas</p>
+  <div class="cols">
+    <div class="card"><span class="badge">1</span><h3 style="margin-top:12px">San Pedro Valley</h3><p>Primera comunidad de startups de Brasil (2011, barrio São Pedro).</p><ul style="margin-top:8px"><li><b>+300 empresas</b>: Hotmart y Sympla</li><li><b>476 startups</b> en la ciudad: top 3 del país</li><li><b>R$ 5.200 millones</b> captados en 5 años</li></ul></div>
+    <div class="card"><span class="badge">2</span><h3 style="margin-top:12px">BH-TEC, el parque tecnológico</h3><p>Inaugurado en 2012 junto a la UFMG: universidad + Estado + empresas.</p><ul style="margin-top:8px"><li><b>100 %</b> de laboratorios ocupados</li><li><b>R$ 1.400 millones</b> facturados en 5 años</li></ul></div>
+    <div class="card"><span class="badge">3</span><h3 style="margin-top:12px">Órbi Conecta</h3><p>Hub creado en 2017 por Inter, MRV, Localiza y líderes del San Pedro Valley.</p><p style="margin-top:8px">Conecta corporaciones y startups.</p></div>
+  </div>
+</section>
+
+<!-- 5 PROYECTOS -->
+<section class="slide">
+  <h2>Proyectos destacados e impacto global</h2>
+  <p class="sub" style="margin-bottom:18px">Lo que ya se desarrolla en el polo</p>
+  <div class="grid2">
+    <div class="card"><div class="ico"><svg><use href="#i-code"/></svg></div><h3>Google en BH</h3><p>Primer centro de ingeniería de Google en América Latina (2005). Sede ampliada en agosto de 2025.</p></div>
+    <div class="card"><div class="ico"><svg><use href="#i-bolt"/></svg></div><h3>Centro de Inteligencia en Sostenibilidad</h3><p>BH-TEC · R$ 18 millones (Finep y gobierno de Minas) y laboratorios vivos en contenedores.</p></div>
+    <figure class="photo" style="grid-row:span 2"><img src="https://bhtec.org.br/wp-content/uploads/2024/04/VIDEO-COM-INFORMACOES-SOBRE-ESPACO-A-SER-PRODUZIDO-1024x633.png" alt="BH-TEC" referrerpolicy="no-referrer" onerror="this.remove()"><figcaption class="ph"><b>BH-TEC</b><span>Parque Tecnológico de Belo Horizonte</span></figcaption></figure>
+    <div class="card"><div class="ico"><svg><use href="#i-flask"/></svg></div><h3>Ciencia y Deep Tech</h3><p>Nuevo edificio UFMG (Vacunas, Nanomateriales y Terapias Avanzadas), InVision, Nanonib y Foro de Deep Techs 2026.</p></div>
+    <div class="card"><div class="ico"><svg><use href="#i-city"/></svg></div><h3>BH: Ciudad Inteligente</h3><p>Programa municipal de tecnología aplicada a la gestión urbana.</p></div>
+  </div>
+</section>
+
+<!-- 6 ISI -->
+<section class="slide big">
+  <h2>Rol del ISI y aprendizaje para Argentina</h2>
+  <p class="sub">Qué hace un ingeniero en sistemas en un polo y qué podemos tomar</p>
+  <div class="row">
+    <div class="card" style="flex:1"><div class="ico"><svg><use href="#i-code"/></svg></div><h3>El Ingeniero en Sistemas en el polo</h3><ul><li>Diseña software y plataformas</li><li>Integra sistemas y analiza datos</li><li>Conecta las necesidades del negocio con la solución técnica</li><li>Trabaja en equipos multidisciplinarios</li></ul></div>
+    <div class="card dark" style="flex:1"><div class="ico" style="background:rgba(255,255,255,.16)"><svg style="stroke:#fff"><use href="#i-spark"/></svg></div><h3>Reflexión para Argentina</h3><p>La innovación se logra articulando <b>universidad + startups + apoyo público</b>.</p><p style="margin-top:10px">Paralelo con Buenos Aires, Córdoba y Rosario, y una oportunidad concreta para <b>Misiones</b>: la cercanía con Brasil en el Mercosur.</p></div>
+  </div>
+</section>
+
+<!-- 7 CONCLUSION -->
+<section class="slide end">
+  <h2 style="font-size:46px;max-width:1040px">Un polo exitoso no depende solo de grandes corporaciones</h2>
+  <p class="sub" style="max-width:960px;margin:10px 0 0">Belo Horizonte lo prueba: universidades sólidas, comunidad emprendedora, infraestructura y costo de vida equilibrado.</p>
+  <div class="words"><span>Talento</span><span>Comunidad</span><span>Innovación</span></div>
+  <p class="foot" style="margin-top:34px;font-size:15px">Fuentes: AMCHAM Brasil · IBGE · UFMG · Agência Minas · Prefeitura de Belo Horizonte</p>
+</section>
+
+</main>
+<div id="mural"></div>
+
+<script>
+(function(){
+var st=document.getElementById('stage'),sl=[].slice.call(st.querySelectorAll('.slide')),i=0,
+pb=document.getElementById('pb'),cnt=document.getElementById('cnt'),mu=document.getElementById('mural'),built=false;
+function show(n){i=Math.max(0,Math.min(sl.length-1,n));sl.forEach(function(s,k){s.classList.toggle('on',k===i)});
+pb.style.width=((i+1)/sl.length*100)+'%';cnt.textContent=(i+1)+' / '+sl.length;}
+function fit(){var w=innerWidth,h=innerHeight-56;
+if(document.body.classList.contains('mural')){[].forEach.call(mu.children,function(m){var s=Math.min(1,m.clientWidth/1280);m.style.height=720*s+'px';m.firstChild.style.transform='scale('+s+')';});return;}
+var s=Math.min(w/1280,h/720);st.style.transform='scale('+s+')';st.style.left=(w-1280*s)/2+'px';st.style.top=56+(h-720*s)/2+'px';}
+function build(){if(built)return;sl.forEach(function(s){var m=document.createElement('div');m.className='mw';var c=s.cloneNode(true);c.classList.remove('on');m.appendChild(c);mu.appendChild(m);});built=true;}
+function toggle(){var b=document.body,on=!b.classList.contains('mural');if(on)build();b.classList.toggle('mural',on);document.getElementById('mv').classList.toggle('on',on);
+document.getElementById('mv').textContent=on?'Volver a la presentación':'Vista Mural / Infografía';scrollTo(0,0);fit();}
+document.getElementById('prev').onclick=function(){show(i-1)};
+document.getElementById('next').onclick=function(){show(i+1)};
+document.getElementById('mv').onclick=toggle;
+document.getElementById('fs').onclick=function(){var d=document;if(d.fullscreenElement){d.exitFullscreen()}else{d.documentElement.requestFullscreen&&d.documentElement.requestFullscreen()}};
+addEventListener('keydown',function(e){if(document.body.classList.contains('mural')){if(e.key==='m'||e.key==='M'||e.key==='Escape')toggle();return;}
+var k=e.key;if(k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();show(i+1)}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(i-1)}else if(k==='Home')show(0);else if(k==='End')show(sl.length-1);else if(k==='m'||k==='M')toggle();else if(k==='f'||k==='F')document.getElementById('fs').click();});
+addEventListener('resize',fit);show(0);fit();
+})();
+</script>
+</body>
+</html>
